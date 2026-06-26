@@ -32,12 +32,10 @@ function renderProfileCard(profile) {
   if (!profile) return "";
   return `
     <div class="real-archive-card">
-      <div class="real-archive-card__portrait" aria-hidden="true"></div>
       <div>
         <strong>${escapeHtml(profile.name)}</strong>
         <span>${escapeHtml(profile.years)}</span>
         ${profile.details.map((detail) => `<p>${escapeHtml(detail)}</p>`).join("")}
-        <small>${escapeHtml(profile.portraitNote)}</small>
       </div>
     </div>
   `;
@@ -67,6 +65,7 @@ function renderChapter(chapter, index) {
     bg.append(createImage(hero, index === 0));
     section.append(bg);
   }
+
   const overlays = createOverlays(chapter);
   if (overlays) section.append(overlays);
 
@@ -80,26 +79,23 @@ function renderChapter(chapter, index) {
 
   const inner = document.createElement("div");
   inner.className = "chapter-section__inner";
+
   const copy = document.createElement("div");
   copy.className = "chapter-copy reveal";
-  const body = [
+  copy.innerHTML = [
     `<span class="chapter-number">${chapter.number}</span>`,
-    `<p class="eyebrow">${chapter.eyebrow}</p>`,
+    chapter.label ? `<p class="chapter-label">${escapeHtml(chapter.label)}</p>` : "",
+    `<p class="eyebrow">${escapeHtml(chapter.eyebrow)}</p>`,
     index === 0
-      ? `<h1 id="${chapter.id}-title" class="headline">${chapter.headline}</h1>`
-      : `<h2 id="${chapter.id}-title" class="chapter-title">${chapter.title}</h2><p class="headline">${chapter.headline}</p>`,
-    chapter.lead ? chapter.lead.map((line) => `<p>${line}</p>`).join("") : "",
-    chapter.quote ? `<blockquote>${chapter.quote}</blockquote>` : "",
-    chapter.id === "three-days" ? `<div class="date-mark">1949.11.27</div>` : "",
-    chapter.paragraphs.map((text) => `<p>${text}</p>`).join(""),
+      ? `<h1 id="${chapter.id}-title" class="chapter-title chapter-title--cover">${escapeHtml(chapter.title)}</h1>`
+      : `<h2 id="${chapter.id}-title" class="chapter-title">${escapeHtml(chapter.title)}</h2>`,
+    chapter.lead ? chapter.lead.map((line) => `<p>${escapeHtml(line)}</p>`).join("") : "",
+    chapter.quote ? `<blockquote>${escapeHtml(chapter.quote)}</blockquote>` : "",
+    chapter.paragraphs.map((text) => `<p>${escapeHtml(text)}</p>`).join(""),
     renderProfileCard(chapter.profileCard),
     renderTimeline(chapter.timeline),
-    chapter.replySentence ? `<p class="reply-sentence" data-typewriter="${escapeHtml(chapter.replySentence)}"></p>` : "",
-    chapter.noteType === "archive"
-      ? `<div class="archive-card"><small>档案说明</small>${chapter.archiveNotes.map((note) => `<p>${note}</p>`).join("")}<p>${chapter.aiDisclosure}</p></div>`
-      : `<p class="source-note">${chapter.archiveNotes[0] || chapter.aiDisclosure}</p>`
+    chapter.replySentence ? `<p class="reply-sentence" data-typewriter="${escapeHtml(chapter.replySentence)}"></p>` : ""
   ].join("");
-  copy.innerHTML = body;
 
   inner.append(copy, renderMedia(chapter, index));
   section.append(inner);
@@ -116,9 +112,8 @@ chapters.forEach((chapter, index) => story.append(renderChapter(chapter, index))
 
 const nav = document.querySelector(".chapter-nav");
 const mobileNav = document.querySelector(".mobile-nav");
-const links = chapters.map((chapter) => `<a href="#${chapter.id}" data-title="${chapter.title}">${chapter.number}</a>`).join("");
-nav.innerHTML = links;
-mobileNav.innerHTML = chapters.map((chapter) => `<a href="#${chapter.id}">${chapter.number} ${chapter.shortTitle}</a>`).join("");
+nav.innerHTML = chapters.map((chapter) => `<a href="#${chapter.id}" data-title="${escapeHtml(chapter.title)}">${chapter.number}</a>`).join("");
+mobileNav.innerHTML = chapters.map((chapter) => `<a href="#${chapter.id}">${chapter.number} ${escapeHtml(chapter.shortTitle)}</a>`).join("");
 
 setupMobileNav(document.querySelector(".mobile-progress"), mobileNav);
 setupModal({

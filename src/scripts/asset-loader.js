@@ -12,13 +12,16 @@ export function createImage(asset, eager = false) {
   const img = document.createElement("img");
   img.src = assetUrl(asset.src);
   img.alt = asset.decorative ? "" : asset.alt || "";
+  img.classList.toggle("asset-img--real", Boolean(asset.real));
+  img.classList.toggle("asset-img--historical", Boolean(asset.historical));
+  img.classList.toggle("asset-img--ai", Boolean(asset.ai));
   img.decoding = "async";
   img.loading = eager ? "eager" : "lazy";
   img.style.setProperty("--asset-position", asset.position || "center");
   img.addEventListener("error", () => {
     const placeholder = document.createElement("div");
     placeholder.className = "placeholder";
-    placeholder.innerHTML = `<span>缺失素材：${asset.src}<br>建议画面：${asset.alt || "装饰叠加"}</span>`;
+    placeholder.innerHTML = `<span>素材未加载：${asset.src}<br>建议画面：${asset.alt || "装饰叠加"}</span>`;
     img.replaceWith(placeholder);
   }, { once: true });
   return img;

@@ -23,8 +23,8 @@
   color: var(--text-dark);
 }
 
-.ordinary {
-  background: linear-gradient(180deg, #c9c2b3, #8a9a9c);
+.ordinary-road {
+  background: linear-gradient(180deg, #d9cfb8, #9da8a6 56%, #40525a);
   color: var(--text-dark);
 }
 
@@ -43,21 +43,39 @@
 }
 
 .morning .headline,
-.ordinary .headline,
+.ordinary-road .headline,
 .future-dawn .headline,
 .ending .headline,
 .morning .chapter-title,
-.ordinary .chapter-title,
+.ordinary-road .chapter-title,
 .future-dawn .chapter-title,
 .ending .chapter-title {
   color: var(--text-dark);
 }
 
 .morning .eyebrow,
-.ordinary .eyebrow,
+.ordinary-road .eyebrow,
 .future-dawn .eyebrow,
 .ending .eyebrow {
-  color: rgba(34, 35, 33, 0.66);
+  color: rgba(34, 35, 33, 0.86);
+}
+
+.morning .chapter-copy,
+.ordinary-road .chapter-copy,
+.future-dawn .chapter-copy,
+.ending .chapter-copy {
+  background:
+    linear-gradient(90deg, rgba(241, 231, 210, 0.98), rgba(241, 231, 210, 0.94) 78%, rgba(241, 231, 210, 0.82)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 60%);
+  border-left-color: rgba(122, 31, 36, 0.7);
+  box-shadow: 0 24px 80px rgba(34, 35, 33, 0.18);
+}
+
+.morning .chapter-copy p,
+.ordinary-road .chapter-copy p,
+.future-dawn .chapter-copy p,
+.ending .chapter-copy p {
+  color: var(--text-dark);
 }
 
 .visual-stack {
@@ -103,6 +121,50 @@
     linear-gradient(90deg, transparent 15%, rgba(241,231,210,.52) 15.4%, transparent 15.8%),
     linear-gradient(115deg, transparent 28%, rgba(225,185,104,.4) 28.3%, transparent 28.8%),
     linear-gradient(70deg, transparent 58%, rgba(241,231,210,.32) 58.3%, transparent 58.8%);
+}
+
+.ordinary-road .chapter-section__inner {
+  grid-template-columns: minmax(0, 0.74fr) minmax(520px, 1fr);
+  align-items: start;
+}
+
+.ordinary-road .chapter-copy {
+  margin-top: clamp(36px, 6vw, 92px);
+}
+
+.ordinary-road .visual-stack--road {
+  min-height: 980px;
+  padding-top: clamp(260px, 24vw, 390px);
+}
+
+.visual-stack--road .film-frame--wide {
+  width: min(100%, 720px);
+  margin-left: auto;
+}
+
+.visual-stack--road .film-frame--wide img {
+  aspect-ratio: 16 / 10;
+}
+
+.visual-stack--road .film-frame:not(.film-frame--wide) {
+  width: min(42%, 270px);
+  margin: -80px 0 0 4%;
+  opacity: 0.86;
+}
+
+.ordinary-road::before {
+  content: "";
+  position: absolute;
+  right: 8%;
+  top: 48%;
+  z-index: 4;
+  width: min(560px, 38vw);
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(122, 31, 36, 0.78), rgba(181, 34, 43, 0.26));
+  transform: rotate(-10deg);
+  transform-origin: right center;
+  box-shadow: 0 0 14px rgba(181, 34, 43, 0.14);
 }
 
 .final-letter {

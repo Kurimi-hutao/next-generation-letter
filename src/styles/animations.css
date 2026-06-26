@@ -6,9 +6,9 @@
 .grain {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
-  opacity: 0.24;
+  opacity: 0.09;
   background-image:
     radial-gradient(circle at 12% 18%, rgba(255,255,255,.16) 0 1px, transparent 1px),
     radial-gradient(circle at 78% 38%, rgba(255,255,255,.12) 0 1px, transparent 1px),
@@ -21,7 +21,7 @@
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  opacity: 0.2;
+  opacity: 0.14;
 }
 
 .dust span {

@@ -1,6 +1,7 @@
 @media (max-width: 1024px) {
   .chapter-section__inner,
-  .chapter-section:nth-of-type(even) .chapter-section__inner {
+  .chapter-section:nth-of-type(even) .chapter-section__inner,
+  .ordinary-road .chapter-section__inner {
     grid-template-columns: 1fr;
     min-height: auto;
   }
@@ -35,33 +36,51 @@
   }
 
   .red-thread {
-    transform: translateX(-28vw);
+    transform: translateX(-34vw);
+    opacity: 0.36;
+  }
+
+  .ordinary-road .visual-stack--road {
+    min-height: auto;
+    padding-top: 0;
+  }
+
+  .visual-stack--road .film-frame--wide,
+  .visual-stack--road .film-frame:not(.film-frame--wide) {
+    width: 100%;
+    margin: 0;
   }
 }
 
 @media (max-width: 640px) {
   .chapter-section {
     min-height: auto;
-    padding: 78px 20px 96px 42px;
+    padding: 76px 18px 94px 34px;
+  }
+
+  .chapter-copy {
+    padding: 22px 18px 24px;
+    max-width: none;
   }
 
   .chapter-copy p,
   .chapter-copy li {
-    font-size: clamp(17px, 4.5vw, 20px);
-    line-height: 1.85;
+    font-size: clamp(18px, 5vw, 21px);
+    line-height: 1.78;
   }
-
-  .headline {
-    font-size: clamp(36px, 12vw, 58px);
-  }
-
-  .history-dark .headline {
-    font-size: clamp(42px, 13vw, 52px);
-    max-width: 7em;
-   }
 
   .chapter-title {
-    font-size: clamp(30px, 9vw, 46px);
+    font-size: clamp(38px, 11vw, 48px);
+    line-height: 1.18;
+  }
+
+  .chapter-title--cover {
+    font-size: clamp(44px, 13vw, 56px);
+  }
+
+  .chapter-label,
+  .eyebrow {
+    font-size: 18px !important;
   }
 
   .chapter-copy blockquote {
@@ -89,6 +108,7 @@
 
   .letter-paper p {
     font-size: 18px;
+    line-height: 1.78;
   }
 
   .chapter-overlay--steam,
@@ -104,13 +124,7 @@
   }
 
   .real-archive-card {
-    grid-template-columns: 58px minmax(0, 1fr);
-    gap: 14px;
     padding: 14px;
-  }
-
-  .real-archive-card__portrait {
-    min-height: 82px;
   }
 
   .thin-timeline {
@@ -119,5 +133,17 @@
 
   .reply-sentence {
     font-size: 20px !important;
+  }
+
+  .ordinary-road::before {
+    right: 8%;
+    top: 67%;
+    width: 70vw;
+    opacity: 0.48;
+  }
+
+  .source-button {
+    font-size: 12px;
+    padding: 7px 10px;
   }
 }

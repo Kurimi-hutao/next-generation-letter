@@ -7,6 +7,14 @@ export function setupModal({ button, shell, content, sourceNotes }) {
     const title = item.sourceUrl ? link(item.sourceUrl, item.title) : item.title;
     return `<p><strong>${title}</strong><br>${item.note}</p>`;
   };
+  const imageRows = sourceNotes.images.map((item) => `
+    <tr>
+      <td>${item.file}</td>
+      <td>${item.author}<br>${item.sourceUrl ? link(item.sourceUrl, item.title) : item.title}<br>${item.modified}</td>
+      <td>${item.licenseUrl ? link(item.licenseUrl, item.license) : item.license}<br>访问：${item.accessed}</td>
+    </tr>
+  `).join("");
+
   content.innerHTML = `
     <h3>一、创作说明</h3>
     ${sourceNotes.creative.map((item) => `<p>${item}</p>`).join("")}
@@ -15,22 +23,10 @@ export function setupModal({ button, shell, content, sourceNotes }) {
     <h3>三、图片与摄影许可</h3>
     <table>
       <thead><tr><th>文件</th><th>作者与来源</th><th>许可</th></tr></thead>
-      <tbody>
-        ${sourceNotes.images.map((item) => `
-          <tr>
-            <td>${item.file}</td>
-            <td>${item.author}<br>${link(item.sourceUrl, item.title)}<br>${item.modified}</td>
-            <td>${link(item.licenseUrl, item.license)}<br>访问：${item.accessed}</td>
-          </tr>
-        `).join("")}
-      </tbody>
+      <tbody>${imageRows}</tbody>
     </table>
-    <h3>四、AI 辅助画面</h3>
+    <h3>四、生成式工具辅助画面</h3>
     ${sourceNotes.ai.map((item) => `<p>${item}</p>`).join("")}
-    <h3>五、原创拍摄素材</h3>
-    ${sourceNotes.originals.map((item) => `<p>${item}</p>`).join("")}
-    <h3>六、仍需人工确认</h3>
-    <ul>${sourceNotes.pending.map((item) => `<li>${item}</li>`).join("")}</ul>
   `;
 
   const close = () => {

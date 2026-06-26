@@ -34,7 +34,7 @@ html.intro-active .source-button {
   height: 100%;
   object-fit: cover;
   object-position: center 42%;
-  opacity: 0.18;
+  opacity: 0.24;
   transform: scale(1.055);
   filter: saturate(0.7) contrast(1.02);
 }
@@ -50,10 +50,10 @@ html.intro-active .source-button {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.2;
+  opacity: 0.08;
   background:
     linear-gradient(104deg, transparent 17%, rgba(241, 231, 210, 0.12) 17.4%, transparent 17.8%),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 4px);
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 12px);
   mix-blend-mode: screen;
 }
 
@@ -164,21 +164,22 @@ html.intro-active .source-button {
   font-family: var(--sans);
   font-size: clamp(11px, 1.1vw, 15px);
   letter-spacing: 0.12em;
-  color: rgba(34, 35, 33, 0.6);
+  color: rgba(34, 35, 33, 0.72);
 }
 
 .envelope__letter-content strong {
   font-family: var(--serif);
-  font-size: clamp(42px, 7vw, 76px);
+  font-size: clamp(36px, 4.7vw, 64px);
   line-height: 1.05;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   color: var(--dark-red);
+  white-space: nowrap;
 }
 
 .envelope__letter-content span {
   font-family: var(--letter);
   font-size: clamp(13px, 1.5vw, 20px);
-  color: rgba(34, 35, 33, 0.72);
+  color: rgba(34, 35, 33, 0.82);
 }
 
 .envelope__thread {

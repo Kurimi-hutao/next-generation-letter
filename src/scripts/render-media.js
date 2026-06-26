@@ -10,7 +10,21 @@ function createFrame(asset, index = 0) {
   return frame;
 }
 
+function renderRoadChapter(chapter) {
+  const media = document.createElement("div");
+  media.className = "chapter-media visual-stack visual-stack--road reveal";
+  const road = chapter.assets.find((asset) => asset.role === "wide");
+  const archive = chapter.assets.find((asset) => asset.role === "archive");
+  if (road) media.append(createFrame(road, 0));
+  if (archive) media.append(createFrame(archive, 1));
+  return media;
+}
+
 export function renderMedia(chapter, index) {
+  if (chapter.id === "ordinary-life") {
+    return renderRoadChapter(chapter);
+  }
+
   const media = document.createElement("div");
   media.className = "chapter-media visual-stack reveal";
 
@@ -18,7 +32,7 @@ export function renderMedia(chapter, index) {
     media.innerHTML = `
       <div class="letter-paper letter-paper--draft">
         <p data-typewriter="${chapter.letterDraft.join("\n")}"></p>
-        <p>可“<span class="strike-word" style="--strike-progress:0">很好</span>”两个字，怎么能够回答一生？</p>
+        <p>只用<span class="strike-word" style="--strike-progress:0">很好</span>两个字，怎么能够回答一生？</p>
       </div>
     `;
     chapter.assets
