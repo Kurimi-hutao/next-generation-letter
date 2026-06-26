@@ -1,0 +1,119 @@
+.history-dark {
+  background: var(--deep-black);
+}
+
+.archive-dark {
+  background: #151615;
+}
+
+.ember {
+  background: #211817;
+}
+
+.desk-night {
+  background: linear-gradient(180deg, #20201f, #1d2730);
+}
+
+.transition-blue {
+  background: linear-gradient(180deg, #27323a, #51666d);
+}
+
+.morning {
+  background: linear-gradient(180deg, #819094, #d8c8aa);
+  color: var(--text-dark);
+}
+
+.ordinary {
+  background: linear-gradient(180deg, #c9c2b3, #8a9a9c);
+  color: var(--text-dark);
+}
+
+.future-dawn {
+  background: linear-gradient(180deg, #8a9ba1, #d8b06b);
+  color: #161b1d;
+}
+
+.remembrance {
+  background: linear-gradient(180deg, #4d5652, #1a1c1b);
+}
+
+.ending {
+  background: linear-gradient(180deg, #24323b, #e1b968 78%, #f1e7d2);
+  color: var(--text-dark);
+}
+
+.morning .headline,
+.ordinary .headline,
+.future-dawn .headline,
+.ending .headline,
+.morning .chapter-title,
+.ordinary .chapter-title,
+.future-dawn .chapter-title,
+.ending .chapter-title {
+  color: var(--text-dark);
+}
+
+.morning .eyebrow,
+.ordinary .eyebrow,
+.future-dawn .eyebrow,
+.ending .eyebrow {
+  color: rgba(34, 35, 33, 0.66);
+}
+
+.visual-stack {
+  position: relative;
+  display: grid;
+  gap: 24px;
+}
+
+.visual-stack .film-frame:nth-child(2) {
+  width: 72%;
+  margin-left: auto;
+  margin-top: -96px;
+}
+
+.history-dark .chapter-section__inner {
+  align-items: end;
+}
+
+.history-dark .headline {
+  font-size: clamp(62px, 8vw, 132px);
+}
+
+.history-dark .chapter-media {
+  min-height: 760px;
+}
+
+.date-mark {
+  display: inline-block;
+  margin: 24px 0;
+  color: var(--paper-light);
+  font-family: var(--serif);
+  font-size: clamp(56px, 10vw, 144px);
+  line-height: 1;
+  border-bottom: 3px solid var(--red-rock);
+}
+
+.transition-lines {
+  position: absolute;
+  inset: 12% 8%;
+  z-index: 2;
+  opacity: 0.28;
+  background:
+    linear-gradient(90deg, transparent 15%, rgba(241,231,210,.52) 15.4%, transparent 15.8%),
+    linear-gradient(115deg, transparent 28%, rgba(225,185,104,.4) 28.3%, transparent 28.8%),
+    linear-gradient(70deg, transparent 58%, rgba(241,231,210,.32) 58.3%, transparent 58.8%);
+}
+
+.final-letter {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.source-block {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(122, 31, 36, 0.35);
+  font-size: 13px;
+  color: rgba(34, 35, 33, 0.74);
+}

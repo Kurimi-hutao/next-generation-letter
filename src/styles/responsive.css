@@ -1,0 +1,92 @@
+@media (max-width: 1024px) {
+  .chapter-section__inner,
+  .chapter-section:nth-child(even) .chapter-section__inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .chapter-section:nth-child(even) .chapter-copy,
+  .chapter-section:nth-child(even) .chapter-media {
+    order: initial;
+  }
+
+  .chapter-media {
+    min-height: 460px;
+  }
+
+  .chapter-nav {
+    display: none;
+  }
+
+  .mobile-progress {
+    display: grid;
+    place-items: center;
+  }
+
+  .site-header {
+    display: none;
+  }
+
+  .red-thread {
+    transform: translateX(-38vw);
+  }
+}
+
+@media (max-width: 640px) {
+  .chapter-section {
+    min-height: auto;
+    padding: 78px 20px 96px 42px;
+  }
+
+  .chapter-copy p,
+  .chapter-copy li {
+    font-size: clamp(17px, 4.5vw, 20px);
+    line-height: 1.85;
+  }
+
+  .headline {
+    font-size: clamp(36px, 12vw, 58px);
+  }
+
+  .history-dark .headline {
+    font-size: clamp(42px, 13vw, 52px);
+    max-width: 7em;
+   }
+
+  .chapter-title {
+    font-size: clamp(30px, 9vw, 46px);
+  }
+
+  .chapter-copy blockquote {
+    padding: 20px;
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .chapter-media {
+    min-height: 340px;
+  }
+
+  .film-frame {
+    padding: 8px;
+  }
+
+  .visual-stack .film-frame:nth-child(2) {
+    width: 86%;
+    margin-top: -42px;
+  }
+
+  .letter-paper {
+    padding: 24px 20px;
+    transform: none;
+  }
+
+  .letter-paper p {
+    font-size: 18px;
+  }
+
+  .source-button {
+    left: 14px;
+    right: auto;
+    bottom: 14px;
+  }
+}
