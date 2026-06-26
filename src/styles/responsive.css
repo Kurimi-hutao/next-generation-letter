@@ -35,7 +35,7 @@
   }
 
   .red-thread {
-    transform: translateX(-38vw);
+    transform: translateX(-28vw);
   }
 }
 
@@ -94,5 +94,30 @@
   .chapter-overlay--steam,
   .chapter-overlay--fog {
     opacity: 0.13;
+  }
+
+  .chapter-overlay--plum {
+    right: -14vw;
+    bottom: 120px;
+    width: 74vw;
+    opacity: 0.24;
+  }
+
+  .real-archive-card {
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .real-archive-card__portrait {
+    min-height: 82px;
+  }
+
+  .thin-timeline {
+    padding-left: 22px;
+  }
+
+  .reply-sentence {
+    font-size: 20px !important;
   }
 }

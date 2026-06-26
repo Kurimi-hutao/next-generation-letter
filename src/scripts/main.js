@@ -20,6 +20,38 @@ if (params.get("capture") === "1") {
 
 const story = document.querySelector(".story");
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function renderProfileCard(profile) {
+  if (!profile) return "";
+  return `
+    <div class="real-archive-card">
+      <div class="real-archive-card__portrait" aria-hidden="true"></div>
+      <div>
+        <strong>${escapeHtml(profile.name)}</strong>
+        <span>${escapeHtml(profile.years)}</span>
+        ${profile.details.map((detail) => `<p>${escapeHtml(detail)}</p>`).join("")}
+        <small>${escapeHtml(profile.portraitNote)}</small>
+      </div>
+    </div>
+  `;
+}
+
+function renderTimeline(items) {
+  if (!items?.length) return "";
+  return `
+    <ol class="thin-timeline" aria-label="极简时间线">
+      ${items.map((item) => `<li><time>${escapeHtml(item.date)}</time><span>${escapeHtml(item.text)}</span></li>`).join("")}
+    </ol>
+  `;
+}
+
 function renderChapter(chapter, index) {
   const section = document.createElement("section");
   section.id = chapter.id;
@@ -60,6 +92,9 @@ function renderChapter(chapter, index) {
     chapter.quote ? `<blockquote>${chapter.quote}</blockquote>` : "",
     chapter.id === "three-days" ? `<div class="date-mark">1949.11.27</div>` : "",
     chapter.paragraphs.map((text) => `<p>${text}</p>`).join(""),
+    renderProfileCard(chapter.profileCard),
+    renderTimeline(chapter.timeline),
+    chapter.replySentence ? `<p class="reply-sentence" data-typewriter="${escapeHtml(chapter.replySentence)}"></p>` : "",
     chapter.noteType === "archive"
       ? `<div class="archive-card"><small>档案说明</small>${chapter.archiveNotes.map((note) => `<p>${note}</p>`).join("")}<p>${chapter.aiDisclosure}</p></div>`
       : `<p class="source-note">${chapter.archiveNotes[0] || chapter.aiDisclosure}</p>`

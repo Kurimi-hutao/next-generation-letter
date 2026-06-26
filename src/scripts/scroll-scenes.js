@@ -130,17 +130,19 @@ export function setupScrollScenes() {
     }
   );
 
-  const typeTarget = document.querySelector("[data-typewriter]");
-  if (typeTarget) {
+  const typeTargets = gsap.utils.toArray("[data-typewriter]");
+  typeTargets.forEach((typeTarget) => {
     ScrollTrigger.create({
       trigger: typeTarget,
       start: "top 75%",
       once: true,
       onEnter: () => typewriter(typeTarget, typeTarget.dataset.typewriter).then(() => {
-        gsap.to(".strike-word", { "--strike-progress": 1, duration: 0.9, ease: "power2.out" });
+        if (typeTarget.closest(".letter-paper--draft")) {
+          gsap.to(".strike-word", { "--strike-progress": 1, duration: 0.9, ease: "power2.out" });
+        }
       })
     });
-  }
+  });
 
   window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
   return () => mm.revert();
