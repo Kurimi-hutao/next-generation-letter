@@ -207,7 +207,7 @@ function initFinalLetterUnfold(root, reduceMotion) {
   const contentChildren = qa(content, ":scope > *");
   const threadPath = q(stage, ".ngl-letter-thread path");
   const threadLength = prepareDraw(threadPath);
-  const targetHeight = Math.max(620, Math.min(920, content.scrollHeight + 82));
+  const targetHeight = Math.max(620, content.scrollHeight + 96);
   const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.inOut" } });
 
   tl.set(shell, { height: 132, y: 38, scaleX: 0.94, autoAlpha: 1 })

@@ -78,19 +78,25 @@ function renderHistoryTimeline() {
         </defs>
         <path class="ngl-history-timeline__base" d="M118 520 C170 434 226 434 278 360 C338 274 408 286 470 216 C542 136 632 166 704 116 C790 58 862 72 920 42" />
         <path class="ngl-history-timeline__progress" d="M118 520 C170 434 226 434 278 360 C338 274 408 286 470 216 C542 136 632 166 704 116 C790 58 862 72 920 42" />
-        <g class="ngl-history-node" data-node-year="1948" transform="translate(118 520)">
-          <circle r="13" /><text x="22" y="-18">1948</text><text x="22" y="18">狱中诗作</text>
+        <g class="ngl-history-node" data-node-year="1948" transform="translate(152 502)">
+          <circle r="13" /><text x="24" y="-18">1948</text><text x="24" y="18">狱中诗作</text>
         </g>
-        <g class="ngl-history-node ngl-history-node--long" data-node-year="1949" transform="translate(278 360)">
-          <circle r="16" /><text x="22" y="-18">1949.11.27</text><text x="22" y="20">黎明之前</text>
+        <g class="ngl-history-node ngl-history-node--long" data-node-year="1949" transform="translate(326 358)">
+          <circle r="16" /><text x="24" y="-18">1949.11.27</text><text x="24" y="20">黎明之前</text>
         </g>
-        <g class="ngl-history-node" data-node-year="1950" transform="translate(470 216)">
-          <circle r="13" /><text x="22" y="-18">1949.11.30</text><text x="22" y="18">重庆解放</text>
+        <g class="ngl-history-node" data-node-year="1950" transform="translate(544 224)">
+          <circle r="13" /><text x="24" y="-18">1949.11.30</text><text x="24" y="18">重庆解放</text>
         </g>
-        <g class="ngl-history-node ngl-history-node--final" data-node-year="2026" transform="translate(920 42)">
-          <circle r="17" /><text x="-190" y="-18">2026</text><text x="-190" y="20">回信的人到了</text>
+        <g class="ngl-history-node ngl-history-node--final" data-node-year="2026" transform="translate(862 88)">
+          <circle r="17" /><text x="-170" y="-18">2026</text><text x="-170" y="20">回信的人到了</text>
         </g>
       </svg>
+      <ol class="ngl-history-timeline__mobile-list" aria-hidden="true">
+        <li><time>1948</time><span>狱中诗作</span></li>
+        <li><time>1949.11.27</time><span>黎明之前</span></li>
+        <li><time>1949.11.30</time><span>重庆解放</span></li>
+        <li><time>2026</time><span>回信的人到了</span></li>
+      </ol>
       <p class="ngl-history-timeline__ending">时间没有替他们回答。答案来到我们脚下的路里。</p>
     </div>
   `;
@@ -160,6 +166,13 @@ function renderCityRoute() {
         <g class="ngl-route-node" transform="translate(934 338)"><circle r="14" /><text x="-146" y="-16">夜归的人</text><text x="-146" y="16">路还在延伸</text></g>
         <path class="ngl-city-bridge" d="M604 426 C672 372 756 372 830 426" />
       </svg>
+      <ol class="ngl-city-route__mobile-list" aria-hidden="true">
+        <li><span>早餐店</span><small>一天开始</small></li>
+        <li><span>街道</span><small>人声经过</small></li>
+        <li><span>轨道</span><small>通向校园</small></li>
+        <li><span>社区</span><small>灯照窗前</small></li>
+        <li><span>夜归的人</span><small>路还在延伸</small></li>
+      </ol>
     </div>
   `;
   return block;

@@ -172,6 +172,26 @@
   margin: 0 auto;
 }
 
+.chapter-section.ending .chapter-section__inner {
+  grid-template-columns: minmax(0, 780px);
+  justify-content: center;
+  align-items: start;
+  gap: clamp(22px, 4vw, 52px);
+  min-height: auto;
+}
+
+.chapter-section.ending .chapter-copy {
+  order: 1;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.chapter-section.ending .narrative-slot--letter {
+  order: 2;
+  width: min(100%, 920px);
+  margin-top: 0;
+}
+
 .source-block {
   margin-top: 28px;
   padding-top: 18px;
