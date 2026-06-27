@@ -2,7 +2,7 @@
   position: fixed;
   right: 28px;
   top: 50%;
-  z-index: 24;
+  z-index: 18;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -11,7 +11,7 @@
 
 .chapter-nav a,
 .mobile-nav a {
-  color: rgba(238, 232, 220, 0.62);
+  color: rgba(238, 232, 220, 0.46);
   text-decoration: none;
 }
 
@@ -62,23 +62,23 @@
   position: fixed;
   right: max(14px, env(safe-area-inset-right));
   bottom: calc(14px + env(safe-area-inset-bottom));
-  z-index: 35;
+  z-index: 22;
   display: none;
   width: 48px;
   height: 48px;
-  border: 1px solid rgba(225, 185, 104, 0.55);
-  background: rgba(9, 10, 11, 0.82);
-  color: var(--paper-light);
+  border: 1px solid rgba(225, 185, 104, 0.34);
+  background: rgba(9, 10, 11, 0.5);
+  color: rgba(241, 231, 210, 0.72);
 }
 
 .mobile-nav {
   position: fixed;
   right: max(14px, env(safe-area-inset-right));
   bottom: calc(74px + env(safe-area-inset-bottom));
-  z-index: 35;
+  z-index: 24;
   width: 176px;
   padding: 12px;
-  background: rgba(9, 10, 11, 0.92);
+  background: rgba(9, 10, 11, 0.84);
   border: 1px solid rgba(225, 185, 104, 0.38);
 }
 
@@ -93,7 +93,7 @@
   position: fixed;
   left: max(18px, env(safe-area-inset-left));
   top: 50%;
-  z-index: 26;
+  z-index: 18;
   display: grid;
   grid-template-columns: 2px minmax(0, 96px);
   gap: 13px;
@@ -101,7 +101,7 @@
   min-height: 220px;
   align-items: center;
   transform: translateY(-50%);
-  color: rgba(241, 231, 210, 0.62);
+  color: rgba(241, 231, 210, 0.42);
   pointer-events: none;
 }
 
@@ -146,9 +146,9 @@
 .red-thread {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 2;
   pointer-events: none;
-  opacity: 0.72;
+  opacity: 0.42;
 }
 
 .red-thread svg {
@@ -160,11 +160,11 @@
 .thread-path {
   fill: none;
   stroke: var(--red-rock);
-  stroke-width: 3;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.62;
-  filter: drop-shadow(0 0 8px rgba(181, 34, 43, 0.12));
+  opacity: 0.44;
+  filter: drop-shadow(0 0 5px rgba(181, 34, 43, 0.08));
 }
 
 .thread-node {
@@ -463,12 +463,12 @@
   left: max(24px, env(safe-area-inset-left));
   right: auto;
   bottom: calc(24px + env(safe-area-inset-bottom));
-  z-index: 28;
+  z-index: 22;
   min-height: 44px;
   padding: 8px 13px;
-  border: 1px solid rgba(225, 185, 104, 0.4);
-  background: rgba(9, 10, 11, 0.62);
-  color: var(--muted-light);
+  border: 1px solid rgba(225, 185, 104, 0.28);
+  background: rgba(9, 10, 11, 0.42);
+  color: rgba(238, 232, 220, 0.56);
   font-size: 13px;
 }
 
@@ -476,7 +476,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 32;
+  z-index: 22;
   display: grid;
   width: var(--edge-control-size);
   height: var(--edge-control-size);
@@ -500,13 +500,14 @@
   display: block;
   width: 100%;
   height: 100%;
-  border: 1px solid rgba(214, 168, 95, 0.42);
+  border: 1px solid rgba(214, 168, 95, 0.28);
   border-radius: 50%;
   background:
     radial-gradient(circle at 50% 50%, transparent 0 10%, rgba(9, 10, 11, 0.88) 10.5% 100%),
     repeating-radial-gradient(circle at 50% 50%, rgba(241, 231, 210, 0.08) 0 1px, transparent 1px 4px),
     radial-gradient(circle at 34% 28%, #272221, #090a0b 62%);
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.36);
+  opacity: 0.72;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.28);
 }
 
 .audio-player__label {
@@ -730,17 +731,17 @@
 
 .archive-records {
   display: grid;
-  gap: 22px;
+  gap: 18px;
   min-width: 0;
 }
 
 .archive-record {
   position: relative;
   display: grid;
-  gap: 14px;
+  gap: 13px;
   min-width: 0;
   overflow: hidden;
-  padding: clamp(18px, 2.4vw, 28px);
+  padding: clamp(16px, 2.1vw, 24px);
   border: 1px solid rgba(225, 185, 104, 0.22);
   background:
     linear-gradient(135deg, rgba(241, 231, 210, 0.06), transparent 42%),
@@ -826,14 +827,27 @@
 
 .archive-media-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  align-items: start;
+  gap: 18px;
   min-width: 0;
+}
+
+.archive-record--poems .archive-media-grid {
+  grid-template-columns: minmax(170px, 0.78fr) minmax(260px, 1.22fr);
+}
+
+.archive-record--poems .archive-media-slot--archive img {
+  max-height: min(50vh, 500px);
+}
+
+.archive-record--poems .archive-media-slot--portrait img {
+  max-height: min(44vh, 430px);
 }
 
 .archive-media-slot {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
   overflow: hidden;
   margin: 0;
@@ -848,7 +862,9 @@
 }
 
 .archive-media-slot img {
+  display: block;
   height: auto;
+  max-height: min(48vh, 460px);
   object-fit: contain;
 }
 
@@ -859,7 +875,7 @@
 
 .archive-media-slot--archive img {
   object-position: center;
-  background: var(--paper-light);
+  background: rgba(241, 231, 210, 0.92);
 }
 
 .archive-media-slot__placeholder {
@@ -892,9 +908,9 @@
 }
 
 .archive-media-slot figcaption {
-  color: rgba(241, 231, 210, 0.54);
-  font-size: 12px;
-  line-height: 1.6;
+  color: rgba(241, 231, 210, 0.74);
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 .archive-abstract-mark {
@@ -918,7 +934,7 @@
   margin: 18px 0 0 !important;
   border-left: 1px solid rgba(225, 185, 104, 0.34);
   padding-left: 12px;
-  color: rgba(241, 231, 210, 0.58) !important;
+  color: rgba(241, 231, 210, 0.68) !important;
   font-size: 13px !important;
 }
 
@@ -966,9 +982,9 @@ html.dialog-open body {
   inset: auto;
   display: flex;
   flex-direction: column;
-  width: min(860px, calc(100vw - 48px));
+  width: min(980px, calc(100vw - 48px));
   max-width: 100%;
-  max-height: min(82dvh, 760px);
+  max-height: min(86dvh, 820px);
   overflow: hidden;
   scrollbar-gutter: stable;
   padding: 0;
@@ -983,8 +999,8 @@ html.dialog-open body {
 
 .archive-dialog__header {
   flex: 0 0 auto;
-  min-height: 78px;
-  padding: clamp(24px, 3vw, 34px) 76px 16px clamp(24px, 3vw, 38px);
+  min-height: 70px;
+  padding: clamp(22px, 2.6vw, 30px) 76px 14px clamp(22px, 2.6vw, 34px);
   border-bottom: 1px solid rgba(122, 31, 36, 0.42);
 }
 
@@ -1004,7 +1020,7 @@ html.dialog-open body {
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-gutter: stable;
-  padding: clamp(22px, 3vw, 38px);
+  padding: clamp(18px, 2.6vw, 30px);
 }
 
 .source-modal__content::-webkit-scrollbar,

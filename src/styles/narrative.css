@@ -1,8 +1,8 @@
 .narrative-slot {
   position: relative;
-  z-index: 6;
+  z-index: 3;
   width: min(1180px, calc(100% - 48px));
-  margin: clamp(42px, 8vw, 116px) auto;
+  margin: clamp(24px, 6vw, 72px) auto clamp(48px, 9vw, 112px);
 }
 
 .narrative-slot--letter {
@@ -32,17 +32,20 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border: 1px solid rgba(225, 185, 104, 0.22);
-  box-shadow: 0 28px 86px rgba(0, 0, 0, 0.3);
+  border: 0;
+  box-shadow: none;
 }
 
 .ngl-archive-develop {
   width: min(92vw, 760px);
   margin: 0 auto;
   padding: clamp(10px, 2vw, 18px);
-  background: #d7c9ad;
+  background:
+    linear-gradient(180deg, rgba(241, 231, 210, 0.92), rgba(197, 184, 154, 0.88)),
+    #d7c9ad;
   color: var(--text-dark);
   transform: rotate(-0.7deg);
+  box-shadow: 0 24px 68px rgba(0, 0, 0, 0.28);
 }
 
 .ngl-archive-develop__frame {
@@ -114,12 +117,14 @@
 .ngl-history-timeline,
 .ngl-bridge-stage,
 .ngl-city-route {
-  min-height: clamp(420px, 64vw, 720px);
+  min-height: clamp(360px, 52vw, 600px);
   color: var(--paper-light);
 }
 
 .ngl-history-timeline {
-  background: linear-gradient(140deg, #101112, #1d2b31 58%, #101112);
+  background:
+    radial-gradient(circle at 78% 12%, rgba(214, 168, 95, 0.12), transparent 22rem),
+    linear-gradient(140deg, rgba(16, 17, 18, 0.78), rgba(29, 43, 49, 0.48) 58%, rgba(16, 17, 18, 0.72));
 }
 
 .ngl-history-timeline__svg,
@@ -134,8 +139,8 @@
 
 .ngl-history-timeline__year {
   position: absolute;
-  left: clamp(22px, 4vw, 48px);
-  top: clamp(18px, 4vw, 42px);
+  left: clamp(22px, 4vw, 46px);
+  top: clamp(18px, 3vw, 34px);
   z-index: 3;
   display: flex;
   align-items: flex-end;
@@ -144,7 +149,7 @@
 
 .ngl-history-timeline__year span {
   font-family: Georgia, serif;
-  font-size: clamp(54px, 10vw, 132px);
+  font-size: clamp(38px, 6.4vw, 88px);
   line-height: 0.88;
   letter-spacing: 0;
 }
@@ -167,14 +172,14 @@
 
 .ngl-history-timeline__base {
   stroke: rgba(241, 231, 210, 0.14);
-  stroke-width: 7;
+  stroke-width: 5;
 }
 
 .ngl-history-timeline__progress {
-  stroke: url("#unused");
   stroke: var(--red-rock);
-  stroke-width: 7;
-  filter: drop-shadow(0 0 9px rgba(181, 34, 43, 0.26));
+  stroke-width: 5;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 5px rgba(181, 34, 43, 0.18));
 }
 
 .ngl-history-node {
@@ -193,13 +198,13 @@
 
 .ngl-history-node text {
   fill: var(--paper-light);
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 700;
 }
 
 .ngl-history-node text:last-child {
   fill: rgba(241, 231, 210, 0.7);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 400;
 }
 
@@ -207,16 +212,19 @@
   position: absolute;
   right: clamp(18px, 4vw, 54px);
   bottom: clamp(18px, 4vw, 48px);
-  max-width: 28rem;
+  max-width: 24rem;
   margin: 0;
   text-align: right;
   font-family: var(--serif);
-  font-size: clamp(23px, 3vw, 42px);
+  font-size: clamp(20px, 2.5vw, 34px);
   line-height: 1.35;
 }
 
 .ngl-bridge-stage {
-  background: #0b0d0e;
+  min-height: clamp(320px, 44vw, 520px);
+  background:
+    radial-gradient(circle at 76% 18%, rgba(225, 185, 104, 0.13), transparent 20rem),
+    linear-gradient(180deg, rgba(11, 13, 14, 0.72), rgba(16, 20, 22, 0.38));
 }
 
 .ngl-bridge-wall {
@@ -235,7 +243,7 @@
 
 .ngl-window-frame rect,
 .ngl-window-frame line {
-  stroke-width: 8;
+  stroke-width: 7;
 }
 
 .ngl-morph-line {
@@ -244,8 +252,9 @@
 
 .ngl-draw-path {
   stroke: var(--red-rock);
-  stroke-width: 7;
-  filter: drop-shadow(0 0 8px rgba(181, 34, 43, 0.22));
+  stroke-width: 6;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 5px rgba(181, 34, 43, 0.18));
 }
 
 .ngl-bridge-dawn rect {
@@ -269,12 +278,12 @@
   z-index: 3;
   display: grid;
   gap: 5px;
-  max-width: min(420px, 76%);
+  max-width: min(360px, 72%);
 }
 
 .ngl-bridge-copy strong {
   font-family: var(--serif);
-  font-size: clamp(22px, 3vw, 40px);
+  font-size: clamp(20px, 2.4vw, 32px);
   line-height: 1.35;
 }
 
@@ -290,7 +299,9 @@
 }
 
 .ngl-city-route {
-  background: linear-gradient(180deg, #152128, #25383e);
+  background:
+    radial-gradient(circle at 82% 16%, rgba(225, 185, 104, 0.1), transparent 20rem),
+    linear-gradient(180deg, rgba(21, 33, 40, 0.74), rgba(37, 56, 62, 0.46));
 }
 
 .ngl-city-route__copy {
@@ -304,7 +315,7 @@
 .ngl-city-route__copy h3 {
   margin: 6px 0 10px;
   font-family: var(--serif);
-  font-size: clamp(34px, 5vw, 72px);
+  font-size: clamp(30px, 4vw, 56px);
 }
 
 .ngl-city-route__copy p {
@@ -323,8 +334,9 @@
 
 .ngl-city-route__road {
   stroke: var(--red-rock);
-  stroke-width: 8;
-  filter: drop-shadow(0 0 7px rgba(181, 34, 43, 0.34));
+  stroke-width: 6;
+  opacity: 0.86;
+  filter: drop-shadow(0 0 5px rgba(181, 34, 43, 0.22));
 }
 
 .ngl-city-bridge {
@@ -360,10 +372,14 @@
 }
 
 .ngl-letter-stage {
-  min-height: clamp(680px, 90vh, 980px);
+  min-height: auto;
+  padding: clamp(36px, 6vw, 72px) 0;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, #29363e, #60665f 55%, #b59a6d);
+  overflow: visible;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(247, 218, 152, 0.28), transparent 18rem),
+    linear-gradient(180deg, rgba(41, 54, 62, 0.28), rgba(181, 154, 109, 0.18));
 }
 
 .ngl-letter-dawn {
@@ -377,7 +393,7 @@
 .ngl-letter-shell {
   position: relative;
   z-index: 2;
-  width: min(86%, 720px);
+  width: min(92%, 760px);
   min-height: 132px;
   overflow: hidden;
   color: var(--text-dark);
@@ -388,7 +404,7 @@
     var(--paper-light);
   background-size: cover;
   background-position: center;
-  box-shadow: 0 36px 96px rgba(27, 21, 12, 0.36);
+  box-shadow: 0 26px 70px rgba(27, 21, 12, 0.26);
 }
 
 .ngl-letter-fold {
@@ -417,7 +433,7 @@
   left: clamp(18px, 5vw, 42px);
   top: 20px;
   bottom: 20px;
-  z-index: 6;
+  z-index: 2;
   width: 28px;
   height: calc(100% - 40px);
   overflow: visible;
@@ -425,15 +441,15 @@
 
 .ngl-letter-thread path {
   fill: none;
-  stroke: var(--dark-red);
-  stroke-width: 4;
+  stroke: rgba(122, 31, 36, 0.42);
+  stroke-width: 3;
   stroke-linecap: round;
 }
 
 .ngl-letter-content {
   position: relative;
   z-index: 4;
-  width: min(78%, 560px);
+  width: min(76%, 580px);
   margin: 0 auto;
   padding: clamp(48px, 7vw, 76px) 0 58px;
 }
@@ -441,8 +457,8 @@
 .ngl-letter-content p {
   margin: 0 0 16px;
   font-family: var(--letter);
-  font-size: clamp(18px, 1.7vw, 24px);
-  line-height: 1.95;
+  font-size: clamp(18px, 1.55vw, 23px);
+  line-height: 1.9;
 }
 
 .ngl-letter-content p:nth-last-child(-n + 2) {
@@ -458,6 +474,11 @@
   letter-spacing: 0.16em;
 }
 
+.ngl-history-timeline__mobile-list,
+.ngl-city-route__mobile-list {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .narrative-slot {
     width: calc(100% - 36px);
@@ -466,21 +487,21 @@
   .ngl-history-timeline,
   .ngl-bridge-stage,
   .ngl-city-route {
-    min-height: 560px;
+    min-height: 480px;
   }
 
   .ngl-history-timeline__svg,
   .ngl-bridge-svg,
   .ngl-city-route__svg {
-    width: 112%;
-    margin-left: -6%;
+    width: 108%;
+    margin-left: -4%;
   }
 }
 
 @media (max-width: 640px) {
   .narrative-slot {
     width: calc(100% - 28px);
-    margin: 34px auto 72px;
+    margin: 22px auto 52px;
   }
 
   .ngl-archive-develop {
@@ -495,18 +516,91 @@
   .ngl-history-timeline,
   .ngl-bridge-stage,
   .ngl-city-route {
-    min-height: 500px;
+    min-height: auto;
+  }
+
+  .ngl-history-timeline,
+  .ngl-city-route {
+    padding: 24px 18px 26px;
   }
 
   .ngl-history-timeline__svg,
   .ngl-city-route__svg {
-    width: 132%;
-    margin-left: -18%;
+    display: none;
   }
 
   .ngl-bridge-svg {
-    width: 146%;
-    margin-left: -23%;
+    width: 118%;
+    min-height: 360px;
+    margin-left: -9%;
+  }
+
+  .ngl-history-timeline__year {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0 0 18px;
+  }
+
+  .ngl-history-timeline__year span {
+    font-size: clamp(42px, 14vw, 62px);
+  }
+
+  .ngl-history-timeline__mobile-list,
+  .ngl-city-route__mobile-list {
+    position: relative;
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding: 0 0 0 22px;
+    list-style: none;
+  }
+
+  .ngl-history-timeline__mobile-list::before,
+  .ngl-city-route__mobile-list::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(181, 34, 43, 0.16), rgba(181, 34, 43, 0.72), rgba(214, 168, 95, 0.42));
+  }
+
+  .ngl-history-timeline__mobile-list li,
+  .ngl-city-route__mobile-list li {
+    position: relative;
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .ngl-history-timeline__mobile-list li::before,
+  .ngl-city-route__mobile-list li::before {
+    content: "";
+    position: absolute;
+    left: -22px;
+    top: 0.65em;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--warm-gold);
+    box-shadow: 0 0 0 4px rgba(181, 34, 43, 0.18);
+  }
+
+  .ngl-history-timeline__mobile-list time,
+  .ngl-city-route__mobile-list span {
+    color: var(--paper-light);
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  .ngl-history-timeline__mobile-list span,
+  .ngl-city-route__mobile-list small {
+    color: rgba(241, 231, 210, 0.68);
+    font-size: 14px;
+    line-height: 1.45;
   }
 
   .ngl-history-node text,
@@ -520,11 +614,21 @@
   }
 
   .ngl-history-timeline__ending {
-    max-width: 76%;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    max-width: none;
+    margin-top: 22px;
+    text-align: left;
+    font-size: 22px;
   }
 
   .ngl-city-route__copy {
-    max-width: 82%;
+    position: relative;
+    left: auto;
+    top: auto;
+    max-width: none;
+    margin-bottom: 18px;
   }
 
   .ngl-city-route__copy p {
@@ -532,21 +636,28 @@
   }
 
   .ngl-letter-stage {
-    min-height: 760px;
+    padding: 26px 0;
   }
 
   .ngl-letter-shell {
-    width: 92%;
+    width: 94%;
+    min-height: 108px;
   }
 
   .ngl-letter-content {
-    width: 76%;
-    padding-top: 42px;
+    width: 80%;
+    padding: 38px 0 44px;
   }
 
   .ngl-letter-content p {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.82;
+    margin-bottom: 13px;
+  }
+
+  .ngl-letter-thread {
+    left: 14px;
+    opacity: 0.42;
   }
 }
 
