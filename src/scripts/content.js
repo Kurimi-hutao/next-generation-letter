@@ -28,6 +28,10 @@ export const sourceNotes = {
     {
       title: "史实使用边界",
       note: "现代旧址照片只作为今天的旧址记录，不标注为 1949 年真实影像。"
+    },
+    {
+      title: "何敬平烈士肖像、1946年《怒吼剧社社员登记表》",
+      note: "来源为重庆市档案馆相关专题资料；史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。"
     }
   ],
   images: [
@@ -62,23 +66,23 @@ export const heJingpingMediaSlots = [
     type: "portrait",
     aspectRatio: "4 / 5",
     institution: "重庆市档案馆",
-    status: "pending-authorization",
+    status: "authorized",
     sourceUrl: "",
-    localAsset: "",
-    alt: "",
-    note: "待取得正式授权后替换"
+    localAsset: "01_History_Archive/H02_HeJingping_Portrait.webp",
+    alt: "何敬平烈士黑白肖像",
+    note: "何敬平烈士肖像。史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。"
   },
   {
     id: "hejingping-nuhou-registration",
-    title: "怒吼剧社社员登记表",
+    title: "1946年《怒吼剧社社员登记表》",
     type: "archive",
     aspectRatio: "3 / 4",
     institution: "重庆市档案馆",
-    status: "pending-authorization",
+    status: "authorized",
     sourceUrl: "",
-    localAsset: "",
-    alt: "",
-    note: "待取得正式授权后替换"
+    localAsset: "01_History_Archive/H03_HeJingping_Nuhou_Registration_1946.webp",
+    alt: "1946年怒吼剧社社员登记表史料图片",
+    note: "1946年《怒吼剧社社员登记表》。史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。"
   },
   {
     id: "hejingping-poetry-exhibit",

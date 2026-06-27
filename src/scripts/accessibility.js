@@ -36,6 +36,12 @@ function renderImageRows(images = []) {
   `).join("");
 }
 
+function getAuthorizationStatusText(slot) {
+  if (slot.status === "authorized") return "史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。";
+  if (slot.institution === "待核实") return "来源与权限核实中";
+  return `${slot.institution}资料联系中`;
+}
+
 function renderAuthorizationList(mediaSlots = []) {
   if (!mediaSlots.length) return "<p>何敬平烈士相关史料图片仍在联系授权中，本页不展示未授权缩略图。</p>";
   return `
@@ -43,18 +49,20 @@ function renderAuthorizationList(mediaSlots = []) {
       ${mediaSlots.map((slot) => `
         <li>
           <strong>${escapeHtml(slot.title)}</strong>
-          <span>${escapeHtml(slot.institution === "待核实" ? "来源与权限核实中" : `${slot.institution}资料联系中`)}</span>
+          <span>${escapeHtml(getAuthorizationStatusText(slot))}</span>
         </li>
       `).join("")}
     </ul>
+    <p class="source-auth-note">史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。</p>
   `;
 }
 
 function renderMediaSlot(slot, index) {
   const status = slot.status || "pending-authorization";
-  const institutionText = slot.institution === "待核实" ? "来源与权限核实中" : `${slot.institution}资料联系中`;
+  const institutionText = getAuthorizationStatusText(slot);
+  const mediaType = slot.type || "archive";
   const placeholder = `
-    <figure class="archive-media-slot" data-media-status="${escapeHtml(status)}" style="--slot-ratio: ${escapeHtml(slot.aspectRatio)}">
+    <figure class="archive-media-slot archive-media-slot--${escapeHtml(mediaType)}" data-media-status="${escapeHtml(status)}" data-media-type="${escapeHtml(mediaType)}" style="--slot-ratio: ${escapeHtml(slot.aspectRatio)}">
       <div class="archive-media-slot__placeholder" aria-label="${escapeHtml(`${slot.title}，史料图片待授权`)}">
         <span class="archive-media-slot__index">史料影像 ${String(index + 1).padStart(2, "0")}</span>
         <span class="archive-media-slot__title">${escapeHtml(slot.title)}</span>
@@ -68,7 +76,7 @@ function renderMediaSlot(slot, index) {
   if (status !== "authorized" || !slot.localAsset) return placeholder;
 
   return `
-    <figure class="archive-media-slot" data-media-status="authorized" style="--slot-ratio: ${escapeHtml(slot.aspectRatio)}">
+    <figure class="archive-media-slot archive-media-slot--${escapeHtml(mediaType)}" data-media-status="authorized" data-media-type="${escapeHtml(mediaType)}" style="--slot-ratio: ${escapeHtml(slot.aspectRatio)}">
       <img src="${escapeHtml(assetUrl(slot.localAsset))}" alt="${escapeHtml(slot.alt)}" loading="lazy" decoding="async" data-slot-fallback="${escapeHtml(slot.id)}" />
       <figcaption>${escapeHtml(slot.note || slot.title)}</figcaption>
     </figure>

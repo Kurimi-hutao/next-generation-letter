@@ -847,6 +847,21 @@
   border: 1px solid rgba(225, 185, 104, 0.26);
 }
 
+.archive-media-slot img {
+  height: auto;
+  object-fit: contain;
+}
+
+.archive-media-slot--portrait img {
+  object-position: center top;
+  background: #161616;
+}
+
+.archive-media-slot--archive img {
+  object-position: center;
+  background: var(--paper-light);
+}
+
 .archive-media-slot__placeholder {
   display: grid;
   align-content: center;
@@ -1053,6 +1068,15 @@ html.dialog-open body {
 
 .source-auth-list span {
   color: rgba(241, 231, 210, 0.64);
+}
+
+.source-auth-note {
+  margin-top: 10px !important;
+  border-left: 1px solid rgba(225, 185, 104, 0.34);
+  padding-left: 12px;
+  color: rgba(241, 231, 210, 0.66) !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
 }
 
 .source-records {
