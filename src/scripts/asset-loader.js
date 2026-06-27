@@ -17,6 +17,7 @@ export function createImage(asset, eager = false) {
   img.classList.toggle("asset-img--ai", Boolean(asset.ai));
   img.decoding = "async";
   img.loading = eager ? "eager" : "lazy";
+  img.fetchPriority = eager ? "high" : "auto";
   img.style.setProperty("--asset-position", asset.position || "center");
   img.addEventListener("error", () => {
     const placeholder = document.createElement("div");

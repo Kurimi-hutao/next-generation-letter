@@ -1,12 +1,12 @@
 import { assetUrl, createImage } from "./asset-loader.js";
 
-function createFrame(asset, index = 0) {
+function createFrame(asset, eager = false) {
   const frame = document.createElement("figure");
   const roleClass = asset.role === "paper" ? "paper-frame" : asset.role === "wide" ? "film-frame film-frame--wide" : "film-frame";
   frame.className = roleClass;
   frame.dataset.reveal = asset.role === "archive" ? "archive" : "image";
   frame.style.setProperty("--asset-position", asset.position || "center");
-  frame.append(createImage(asset, index < 2));
+  frame.append(createImage(asset, eager));
   frame.insertAdjacentHTML("beforeend", `<figcaption class="sr-only">${asset.alt || ""}</figcaption>`);
   return frame;
 }
@@ -17,8 +17,8 @@ function renderRoadChapter(chapter) {
   media.dataset.reveal = "image";
   const road = chapter.assets.find((asset) => asset.role === "wide");
   const archive = chapter.assets.find((asset) => asset.role === "archive");
-  if (road) media.append(createFrame(road, 0));
-  if (archive) media.append(createFrame(archive, 1));
+  if (road) media.append(createFrame(road));
+  if (archive) media.append(createFrame(archive));
   return media;
 }
 
@@ -40,7 +40,7 @@ export function renderMedia(chapter, index) {
     `;
     chapter.assets
       .filter((asset) => asset.role !== "hero" && asset.role !== "overlay")
-      .forEach((asset, frameIndex) => media.append(createFrame(asset, frameIndex + 1)));
+      .forEach((asset) => media.append(createFrame(asset)));
     return media;
   }
 
@@ -61,7 +61,7 @@ export function renderMedia(chapter, index) {
   chapter.assets
     .filter((asset) => asset.role !== "overlay" && (asset.role !== "hero" || asset.duplicateInMedia))
     .slice(0, 4)
-    .forEach((asset, frameIndex) => media.append(createFrame(asset, frameIndex)));
+    .forEach((asset, frameIndex) => media.append(createFrame(asset, index <= 1 && frameIndex === 0)));
 
   return media;
 }

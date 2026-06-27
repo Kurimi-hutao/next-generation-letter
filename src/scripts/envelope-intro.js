@@ -203,7 +203,7 @@ export function setupEnvelopeIntro({ audio } = {}) {
       gsap.set(el.mouthCover, { autoAlpha: 0 });
       gsap.set(el.seal, { autoAlpha: 0 });
       showPaperOnly();
-      gsap.set(el.letter, { yPercent: frame === "paper-half" ? -25 : -72, scale: 1 });
+      gsap.set(el.letter, { yPercent: frame === "paper-half" ? -25 : -68, scale: 1 });
       if (frame === "paper-out" || frame === "title") {
         showText();
         gsap.set(el.letterContent, { autoAlpha: 1, y: 0 });
@@ -215,7 +215,7 @@ export function setupEnvelopeIntro({ audio } = {}) {
 
   function buildTimeline({ isMobile }) {
     prepare();
-    const extract = isMobile ? -76 : -72;
+    const extract = isMobile ? -70 : -68;
     const stageLift = isMobile ? "-4vh" : "-3vh";
     const finalScale = isMobile ? 1.72 : 1.48;
 
@@ -262,18 +262,33 @@ export function setupEnvelopeIntro({ audio } = {}) {
 
   function initTimelines() {
     mm?.revert();
-    mm = null;
-    if (completed) return;
-    timeline?.kill();
-    timeline = buildTimeline({
-      isDesktop: window.matchMedia("(min-width: 769px)").matches,
-      isMobile: window.matchMedia("(max-width: 768px)").matches
-    });
-    applyTestFrame(params.get("frame"));
-    if (pendingOpen && state === STATE.OPENING) {
-      pendingOpen = false;
-      timeline.restart();
-    }
+    mm = gsap.matchMedia();
+    mm.add(
+      {
+        isDesktop: "(min-width: 769px)",
+        isMobile: "(max-width: 768px)"
+      },
+      (context) => {
+        const conditions = { ...context.conditions };
+        window.setTimeout(() => {
+          if (completed || (state !== STATE.IDLE && timeline)) return;
+          timeline?.kill();
+          timeline = buildTimeline(conditions);
+          applyTestFrame(params.get("frame"));
+          if (pendingOpen && state === STATE.OPENING) {
+            pendingOpen = false;
+            timeline.restart();
+          }
+        }, 0);
+
+        return () => {
+          if (state === STATE.IDLE && !completed) {
+            timeline?.kill();
+            timeline = null;
+          }
+        };
+      }
+    );
   }
 
   function open() {
