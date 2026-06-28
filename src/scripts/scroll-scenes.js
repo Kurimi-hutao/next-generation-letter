@@ -104,6 +104,45 @@ function setupScrollRefreshWatchers() {
   };
 }
 
+function setupRedThread({ reduceMotion }) {
+  const path = document.querySelector(".thread-path--progress");
+  if (!path || typeof path.getTotalLength !== "function") {
+    return () => {};
+  }
+
+  const length = path.getTotalLength();
+
+  if (reduceMotion) {
+    gsap.set(path, {
+      strokeDasharray: length,
+      strokeDashoffset: 0
+    });
+    return () => {};
+  }
+
+  gsap.set(path, {
+    strokeDasharray: length,
+    strokeDashoffset: length
+  });
+
+  const tween = gsap.to(path, {
+    strokeDashoffset: 0,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".story",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.7,
+      invalidateOnRefresh: true
+    }
+  });
+
+  return () => {
+    tween.scrollTrigger?.kill();
+    tween.kill();
+  };
+}
+
 export function setupScrollScenes() {
   const isCapture = document.documentElement.dataset.capture === "true";
   const profile = performanceProfile();
@@ -128,21 +167,26 @@ export function setupScrollScenes() {
     {
       reduceMotion: "(prefers-reduced-motion: reduce)",
       isDesktop: "(min-width: 1025px)",
+      isTablet: "(min-width: 641px) and (max-width: 1024px)",
       isSmallMobile: "(max-width: 640px)"
     },
     (context) => {
       const { reduceMotion, isDesktop, isSmallMobile } = context.conditions;
       const revealTargets = gsap.utils.toArray("[data-reveal]");
+      const cleanupRedThread = setupRedThread({ reduceMotion });
 
       if (reduceMotion) {
         gsap.set(revealTargets, { autoAlpha: 1, x: 0, y: 0, scale: 1 });
-        gsap.set(".thread-path", { strokeDashoffset: 0 });
         gsap.set(".strike-word", { "--strike-progress": 1 });
-        return;
+        return cleanupRedThread;
       }
 
       if (isSmallMobile) {
-        return setupMobileReveal(revealTargets, reduceMotion);
+        const cleanupReveal = setupMobileReveal(revealTargets, reduceMotion);
+        return () => {
+          cleanupReveal();
+          cleanupRedThread();
+        };
       }
 
       revealTargets.forEach((el) => {
@@ -170,22 +214,6 @@ export function setupScrollScenes() {
               scrub: isDesktop ? 1.2 : 0.4
             }
           });
-        });
-      }
-
-      const path = document.querySelector(".thread-path");
-      if (path) {
-        const length = path.getTotalLength();
-        gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
-        gsap.to(path, {
-          strokeDashoffset: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".story",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.8
-          }
         });
       }
 
@@ -227,6 +255,8 @@ export function setupScrollScenes() {
           }
         });
       }
+
+      return cleanupRedThread;
     }
   );
 

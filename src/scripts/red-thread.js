@@ -15,8 +15,9 @@ export function createRedThread(chapters) {
   return `
     <div class="red-thread" aria-hidden="true">
       <svg viewBox="0 0 1440 ${total}" preserveAspectRatio="none">
-        <path class="thread-path" d="${d}" />
-        ${nodes}
+        <path class="thread-path thread-path--base" d="${d}" />
+        <path class="thread-path thread-path--progress" d="${d}" />
+        <g class="thread-nodes">${nodes}</g>
       </svg>
     </div>
   `;

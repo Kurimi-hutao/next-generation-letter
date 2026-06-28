@@ -119,30 +119,18 @@
   top: max(14px, env(safe-area-inset-top));
   z-index: 21;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: auto auto;
+  justify-content: end;
   align-items: center;
   gap: 10px;
   pointer-events: none;
 }
 
-.story-shell__brand,
 .story-shell__chapter,
 .story-shell__button {
   border: 1px solid rgba(225, 185, 104, 0.24);
   background: rgba(9, 10, 11, 0.62);
   color: rgba(241, 231, 210, 0.78);
-}
-
-.story-shell__brand {
-  justify-self: start;
-  max-width: min(40vw, 260px);
-  min-height: 38px;
-  padding: 8px 12px;
-  overflow: hidden;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  pointer-events: auto;
 }
 
 .story-shell__chapter {
@@ -175,7 +163,6 @@
   pointer-events: auto;
 }
 
-.story-shell__brand:focus-visible,
 .story-shell__button:focus-visible,
 .story-shell-drawer__close:focus-visible,
 .story-shell-drawer__list a:focus-visible {
@@ -276,7 +263,8 @@
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.58;
+  opacity: 1;
+  mix-blend-mode: normal;
 }
 
 .red-thread svg {
@@ -287,17 +275,27 @@
 
 .thread-path {
   fill: none;
-  stroke: var(--red-rock);
-  stroke-width: 1.35;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.5;
-  filter: drop-shadow(0 0 4px rgba(181, 34, 43, 0.08));
+  vector-effect: non-scaling-stroke;
+}
+
+.thread-path--base {
+  stroke: rgba(122, 31, 36, 0.48);
+  stroke-width: 1.45;
+  opacity: 0.72;
+}
+
+.thread-path--progress {
+  stroke: #b5222b;
+  stroke-width: 2.1;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 5px rgba(181, 34, 43, 0.28));
 }
 
 .thread-node {
-  fill: var(--warm-gold);
-  opacity: 0.62;
+  fill: #d6a85f;
+  opacity: 0.58;
 }
 
 .film-frame {
@@ -800,24 +798,6 @@
   margin-top: 12px;
 }
 
-.source-auth-list {
-  display: grid;
-  gap: 8px;
-  padding: 0;
-  list-style: none;
-}
-
-.source-auth-list li {
-  display: grid;
-  gap: 2px;
-  padding: 10px 0;
-  border-top: 1px solid rgba(122, 31, 36, 0.16);
-}
-
-.source-auth-list span {
-  color: rgba(34, 35, 33, 0.68);
-}
-
 .source-modal th,
 .source-modal td {
   vertical-align: top;
@@ -1254,19 +1234,6 @@ html.dialog-open body {
 .source-modal.archive-dialog a,
 .archive-panel.archive-dialog a {
   color: var(--warm-gold);
-}
-
-.source-auth-list span {
-  color: rgba(241, 231, 210, 0.64);
-}
-
-.source-auth-note {
-  margin-top: 10px !important;
-  border-left: 1px solid rgba(225, 185, 104, 0.34);
-  padding-left: 12px;
-  color: rgba(241, 231, 210, 0.66) !important;
-  font-size: 13px !important;
-  line-height: 1.7 !important;
 }
 
 .source-records {

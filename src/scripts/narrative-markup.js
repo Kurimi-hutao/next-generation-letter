@@ -47,7 +47,7 @@ function renderArchiveDevelop() {
         <img
           class="ngl-archive-develop__image"
           alt="何敬平诗作或铁窗诗社相关展陈"
-          ${imageAttributes("01_History_Archive/he-jingping-poetry.webp", {
+          ${imageAttributes("01_History_Archive/he-jingping-exhibit.webp", {
             sizes: "(max-width: 767px) calc(100vw - 64px), 720px"
           })}
         />
@@ -55,8 +55,7 @@ function renderArchiveDevelop() {
       </div>
       <figcaption class="ngl-archive-develop__caption">
         <span class="ngl-archive-develop__label">档案影像</span>
-        <strong>何敬平诗作 / 铁窗诗社相关展陈</strong>
-        <span>来源：何敬平烈士授权史料素材包</span>
+        <strong>何敬平诗作或铁窗诗社相关展陈</strong>
       </figcaption>
     </figure>
   `;

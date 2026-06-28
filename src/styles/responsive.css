@@ -76,11 +76,17 @@
 
   .red-thread {
     transform: none;
-    opacity: 0.18;
   }
 
-  .thread-path {
+  .thread-path--base {
     stroke-width: 1.1;
+    opacity: 0.38;
+  }
+
+  .thread-path--progress {
+    stroke-width: 1.55;
+    opacity: 0.76;
+    filter: drop-shadow(0 0 3px rgba(181, 34, 43, 0.2));
   }
 
   .thread-node {
@@ -365,6 +371,7 @@
     right: max(10px, env(safe-area-inset-right));
     top: env(safe-area-inset-top);
     grid-template-columns: minmax(0, 1fr) auto;
+    justify-content: stretch;
     gap: 0;
     min-height: 46px;
     border-bottom: 1px solid rgba(181, 34, 43, 0.42);
@@ -373,10 +380,6 @@
       transform 260ms cubic-bezier(.22, .61, .36, 1),
       opacity 180ms ease;
     will-change: transform;
-  }
-
-  .story-shell__brand {
-    display: none;
   }
 
   .story-shell__chapter {

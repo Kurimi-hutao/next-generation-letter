@@ -30,12 +30,8 @@ export const sourceNotes = {
       note: "现代旧址照片只作为今天的旧址记录，不标注为 1949 年真实影像。"
     },
     {
-      title: "何敬平烈士肖像、1946年《怒吼剧社社员登记表》",
-      note: "来源为重庆市档案馆相关专题资料；史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。"
-    },
-    {
-      title: "何敬平诗作 / 铁窗诗社相关展陈",
-      note: "来源为何敬平烈士授权史料素材包中的 poetry.webp；页面复制为项目内资源后展示，未移动或删除原始文件，不标注为 AI 生成图。"
+      title: "重庆市档案馆授权史料",
+      note: "何敬平烈士肖像、1946年《怒吼剧社社员登记表》及相关诗作展陈图片，已获授权使用。"
     }
   ],
   images: [
@@ -55,8 +51,7 @@ export const sourceNotes = {
     { file: "F08_CQU_Electrical_Engineering_Building.jpg", title: "重庆大学电气工程学院楼", author: "苏适", sourceUrl: "https://commons.wikimedia.org/wiki/File:%E9%87%8D%E5%BA%86%E5%A4%A7%E5%AD%A6%E7%94%B5%E6%B0%94%E5%B7%A5%E7%A8%8B%E5%AD%A6%E9%99%A2%E6%A5%BC.jpg", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", modified: "裁切、自然调色", accessed: "2026-06-26" },
     { file: "F10_Shazhengjie_Station_CQU.jpg", title: "Exit 1 of Shazhengjie Station Loop Line", author: "Junyi Lou", sourceUrl: "https://commons.wikimedia.org/wiki/File:Exit_1_of_Shazhengjie_Station_Loop_Line.jpg", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", modified: "裁切、自然调色", accessed: "2026-06-26" },
     { file: "User_Library_Study.png", title: "图书馆学习原创照片", author: "创作者提供", license: "原创授权素材", modified: "裁切、自然调色", accessed: "2026-06-26" },
-    { file: "User_Hongyan_Letter.png", title: "红岩旧址前持信原创照片", author: "创作者提供", license: "原创授权素材", modified: "裁切、自然调色", accessed: "2026-06-26" },
-    { file: "he-jingping-poetry.webp", title: "何敬平诗作 / 铁窗诗社相关展陈", author: "何敬平烈士授权史料素材包", license: "授权史料素材", modified: "复制至项目资源目录，网页中保持原比例展示", accessed: "2026-06-27" }
+    { file: "User_Hongyan_Letter.png", title: "红岩旧址前持信原创照片", author: "创作者提供", license: "原创授权素材", modified: "裁切、自然调色", accessed: "2026-06-26" }
   ],
   ai: [
     "AI_Cover_DarkLetter.webp、AI_WindowLight.webp、AI_BlankPrisonPaper.webp、AI_FireShadowWall.webp、AI_ModernDeskNight.webp、AI_BarsToBridge.webp、AI_RedLineCity.webp、AI_ClassroomLight.webp、AI_MechanicalDawn.webp、AI_UnfoldedLetter.webp、AI_FinalDawn.webp 为生成式工具辅助创作的非史实氛围画面。",
@@ -75,7 +70,7 @@ export const heJingpingMediaSlots = [
     sourceUrl: "",
     localAsset: "01_History_Archive/H02_HeJingping_Portrait.webp",
     alt: "何敬平烈士黑白肖像",
-    note: "何敬平烈士肖像。史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。"
+    caption: "何敬平烈士肖像"
   },
   {
     id: "hejingping-nuhou-registration",
@@ -87,7 +82,7 @@ export const heJingpingMediaSlots = [
     sourceUrl: "",
     localAsset: "01_History_Archive/H03_HeJingping_Nuhou_Registration_1946.webp",
     alt: "1946年怒吼剧社社员登记表史料图片",
-    note: "1946年《怒吼剧社社员登记表》。史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。"
+    caption: "1946年《怒吼剧社社员登记表》"
   },
   {
     id: "hejingping-poetry-exhibit",
@@ -97,9 +92,9 @@ export const heJingpingMediaSlots = [
     institution: "何敬平烈士授权史料素材包",
     status: "authorized",
     sourceUrl: "",
-    localAsset: "01_History_Archive/he-jingping-poetry.webp",
+    localAsset: "01_History_Archive/he-jingping-exhibit.webp",
     alt: "何敬平诗作或铁窗诗社相关展陈",
-    note: "来源为何敬平烈士授权史料素材包中的 poetry.webp；页面复制使用，未改写图内内容。"
+    caption: "何敬平诗作或铁窗诗社相关展陈"
   }
 ];
 
@@ -153,8 +148,7 @@ export const heJingpingArchive = {
       ],
       abstract: true
     }
-  ],
-  note: "《把牢底坐穿》的具体创作季节表述待馆方核验；页面主叙事统一写作“1948 年，在重庆渣滓洞”。"
+  ]
 };
 
 export const chapters = [

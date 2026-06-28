@@ -36,40 +36,17 @@ function renderImageRows(images = []) {
   `).join("");
 }
 
-function getAuthorizationStatusText(slot) {
-  if (slot.status === "authorized") return "史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。";
-  if (slot.institution === "待核实") return "来源与权限核实中";
-  return `${slot.institution}资料联系中`;
-}
-
-function renderAuthorizationList(mediaSlots = []) {
-  if (!mediaSlots.length) return "<p>何敬平烈士相关史料图片仍在联系授权中，本页不展示未授权缩略图。</p>";
-  return `
-    <ul class="source-auth-list">
-      ${mediaSlots.map((slot) => `
-        <li>
-          <strong>${escapeHtml(slot.title)}</strong>
-          <span>${escapeHtml(getAuthorizationStatusText(slot))}</span>
-        </li>
-      `).join("")}
-    </ul>
-    <p class="source-auth-note">史料图片已获使用授权，相关证明由创作者线下留存备查，不随网页公开。</p>
-  `;
-}
-
 function renderMediaSlot(slot, index) {
   const status = slot.status || "pending-authorization";
-  const institutionText = getAuthorizationStatusText(slot);
   const mediaType = slot.type || "archive";
   const placeholder = `
     <figure class="archive-media-slot archive-media-slot--${escapeHtml(mediaType)}" data-media-status="${escapeHtml(status)}" data-media-type="${escapeHtml(mediaType)}" style="--slot-ratio: ${escapeHtml(slot.aspectRatio)}">
-      <div class="archive-media-slot__placeholder" aria-label="${escapeHtml(`${slot.title}，史料图片待授权`)}">
+      <div class="archive-media-slot__placeholder" aria-label="${escapeHtml(`${slot.title}，图片暂未加载`)}">
         <span class="archive-media-slot__index">史料影像 ${String(index + 1).padStart(2, "0")}</span>
         <span class="archive-media-slot__title">${escapeHtml(slot.title)}</span>
-        <span class="archive-media-slot__status">史料图片待授权</span>
-        <span class="archive-media-slot__institution">${escapeHtml(institutionText)}</span>
+        <span class="archive-media-slot__status">图片暂未加载</span>
       </div>
-      <figcaption>${escapeHtml(slot.note || "取得正式许可后替换为馆藏图片")}</figcaption>
+      <figcaption>${escapeHtml(slot.caption || slot.title)}</figcaption>
     </figure>
   `;
 
@@ -78,7 +55,7 @@ function renderMediaSlot(slot, index) {
   return `
     <figure class="archive-media-slot archive-media-slot--${escapeHtml(mediaType)}" data-media-status="authorized" data-media-type="${escapeHtml(mediaType)}" style="--slot-ratio: ${escapeHtml(slot.aspectRatio)}">
       <img src="${escapeHtml(assetUrl(slot.localAsset))}" alt="${escapeHtml(slot.alt)}" loading="lazy" decoding="async" data-slot-fallback="${escapeHtml(slot.id)}" />
-      <figcaption>${escapeHtml(slot.note || slot.title)}</figcaption>
+      <figcaption>${escapeHtml(slot.caption || slot.title)}</figcaption>
     </figure>
   `;
 }
@@ -131,7 +108,7 @@ function renderArchiveEntry(entry, mediaSlots = []) {
     <div class="archive-records">
       ${entry.sections.map((section) => renderArchiveSection(section, mediaSlots)).join("")}
     </div>
-    <p class="archive-boundary-note">${escapeHtml(entry.note)}</p>
+    ${entry.note ? `<p class="archive-boundary-note">${escapeHtml(entry.note)}</p>` : ""}
   `;
 }
 
@@ -145,8 +122,7 @@ export function setupModal({ button, shell, content, sourceNotes, mediaSlots = [
       ${sourceNotes.history.map(renderHistoryItem).join("")}
     </section>
     <section class="source-section">
-      <h3>图片与授权</h3>
-      ${renderAuthorizationList(mediaSlots)}
+      <h3>图片来源</h3>
       <div class="source-records" aria-label="图片授权记录">
         ${renderImageRows(sourceNotes.images)}
       </div>
