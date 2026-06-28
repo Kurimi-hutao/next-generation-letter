@@ -115,7 +115,7 @@
 .transition-lines {
   position: absolute;
   inset: 12% 8%;
-  z-index: 2;
+  z-index: 3;
   opacity: 0.28;
   background:
     linear-gradient(90deg, transparent 15%, rgba(241,231,210,.52) 15.4%, transparent 15.8%),

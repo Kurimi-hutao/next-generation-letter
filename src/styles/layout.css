@@ -44,6 +44,7 @@ html {
 
 .story {
   position: relative;
+  isolation: isolate;
   width: min(100%, var(--page-width));
   min-width: 0;
   max-width: 100%;
@@ -73,9 +74,13 @@ html {
   min-width: 0;
   max-width: 100%;
   min-height: var(--section-height);
-  isolation: isolate;
+  isolation: auto;
   overflow: hidden;
   padding: clamp(72px, 8vw, 140px) clamp(24px, 7vw, 108px);
+}
+
+.story-chapter {
+  scroll-margin-top: 24px;
 }
 
 .sr-only {
@@ -117,7 +122,7 @@ html {
 
 .chapter-copy {
   position: relative;
-  z-index: 5;
+  z-index: 6;
   isolation: isolate;
   min-width: 0;
   max-width: min(100%, 720px);
@@ -253,6 +258,7 @@ h2 {
 
 .chapter-media {
   position: relative;
+  z-index: 4;
   min-width: 0;
   max-width: 100%;
   min-height: 560px;
@@ -284,8 +290,7 @@ html[data-capture="true"] .chapter-section {
 }
 
 html[data-capture="true"] .chapter-nav,
-html[data-capture="true"] .mobile-progress,
-html[data-capture="true"] .mobile-nav,
+html[data-capture="true"] .story-shell,
 html[data-capture="true"] .site-header,
 html[data-capture="true"] .source-button,
 html[data-capture="true"] .audio-player {

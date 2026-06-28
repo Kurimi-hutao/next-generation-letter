@@ -281,7 +281,6 @@ function setupTimelineVisibility() {
 
 export function setupNavSpy(chapters) {
   const navLinks = [...document.querySelectorAll(".chapter-nav a")];
-  const mobileLabel = document.querySelector(".mobile-progress span");
   chapters.forEach((chapter) => {
     ScrollTrigger.create({
       trigger: `#${chapter.id}`,
@@ -290,7 +289,6 @@ export function setupNavSpy(chapters) {
       onToggle: (self) => {
         if (!self.isActive) return;
         navLinks.forEach((link) => link.classList.toggle("is-active", link.hash === `#${chapter.id}`));
-        if (mobileLabel) mobileLabel.textContent = chapter.number;
       }
     });
   });

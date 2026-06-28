@@ -20,7 +20,7 @@ function getFocusables(root) {
   return [...root.querySelectorAll(focusableSelector)].filter((el) => el.offsetParent !== null || el === document.activeElement);
 }
 
-function syncScrollLock() {
+function syncScrollLock(afterUnlock) {
   const locked = [...activeControllers].some((controller) => controller.locksScroll && controller.isOpen());
   if (locked && !scrollLock) {
     scrollLock = {
@@ -58,7 +58,10 @@ function syncScrollLock() {
     requestAnimationFrame(() => {
       window.scrollTo({ top: y, left: x, behavior: "auto" });
       document.documentElement.style.scrollBehavior = htmlScrollBehavior;
+      afterUnlock?.();
     });
+  } else {
+    afterUnlock?.();
   }
 }
 
@@ -125,9 +128,10 @@ export function createDialogController({
       setHidden(true);
       isOpen = false;
       activeControllers.delete(api);
-      syncScrollLock();
-      onAfterClose?.();
-      if (restoreFocus) previousFocus?.focus?.({ preventScroll: true });
+      syncScrollLock(() => {
+        onAfterClose?.();
+        if (restoreFocus) previousFocus?.focus?.({ preventScroll: true });
+      });
       return;
     }
 
@@ -139,9 +143,10 @@ export function createDialogController({
         setHidden(true);
         isOpen = false;
         activeControllers.delete(api);
-        syncScrollLock();
-        onAfterClose?.();
-        if (restoreFocus) previousFocus?.focus?.({ preventScroll: true });
+        syncScrollLock(() => {
+          onAfterClose?.();
+          if (restoreFocus) previousFocus?.focus?.({ preventScroll: true });
+        });
       }
     });
 

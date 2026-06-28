@@ -7,7 +7,7 @@ html.intro-active body {
 html.intro-active .site-header,
 html.intro-active .chapter-nav,
 html.intro-active .chapter-progress,
-html.intro-active .mobile-progress,
+html.intro-active .story-shell,
 html.intro-active .source-button,
 html.intro-active .audio-toggle {
   opacity: 0;

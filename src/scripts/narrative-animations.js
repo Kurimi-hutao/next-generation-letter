@@ -26,8 +26,7 @@ function createOnceTrigger(root, timeline, start = "top 75%") {
   });
 }
 
-function initArchiveDevelop(root, reduceMotion, profile) {
-  const stage = q(root, '[data-narrative-stage="archiveDevelop"]');
+function initArchiveDevelop(stage, reduceMotion, profile) {
   if (!stage) return null;
   const photo = q(stage, ".ngl-archive-develop__frame");
   const scene = q(stage, ".ngl-archive-develop__image");
@@ -40,6 +39,7 @@ function initArchiveDevelop(root, reduceMotion, profile) {
   if (profile === "lite") {
     gsap.set([photo, scene, captionItems], { autoAlpha: 1, scale: 1, y: 0, filter: "none" });
     gsap.set([emulsion, scan, grain], { autoAlpha: 0 });
+    stage.classList.add("is-ready");
     return null;
   }
 
@@ -54,8 +54,10 @@ function initArchiveDevelop(root, reduceMotion, profile) {
 
     if (reduceMotion) {
       tl.progress(1).pause();
+      stage.classList.add("is-ready");
       return null;
     }
+    stage.classList.add("is-ready");
     return createOnceTrigger(stage, tl, "top 78%");
   }
 
@@ -77,13 +79,14 @@ function initArchiveDevelop(root, reduceMotion, profile) {
 
   if (reduceMotion) {
     tl.progress(1).pause();
+    stage.classList.add("is-ready");
     return null;
   }
+  stage.classList.add("is-ready");
   return createOnceTrigger(stage, tl, "top 75%");
 }
 
-function initHistoryTimeline(root, reduceMotion, profile) {
-  const stage = q(root, '[data-narrative-stage="timeline"]');
+function initHistoryTimeline(stage, reduceMotion, profile) {
   if (!stage) return null;
   const progress = q(stage, ".ngl-history-timeline__progress");
   const nodes = qa(stage, ".ngl-history-node");
@@ -106,11 +109,14 @@ function initHistoryTimeline(root, reduceMotion, profile) {
 
   if (reduceMotion || profile === "lite") {
     tl.progress(1).pause();
+    stage.classList.add("is-ready");
     return null;
   }
   if (profile === "balanced") {
+    stage.classList.add("is-ready");
     return createOnceTrigger(stage, tl, "top 78%");
   }
+  stage.classList.add("is-ready");
   return ScrollTrigger.create({
     trigger: stage,
     start: "top 76%",
@@ -120,8 +126,7 @@ function initHistoryTimeline(root, reduceMotion, profile) {
   });
 }
 
-function initBarsToBridge(root, reduceMotion, profile) {
-  const stage = q(root, '[data-narrative-stage="barsBridge"]');
+function initBarsToBridge(stage, reduceMotion, profile) {
   if (!stage) return null;
   const lines = qa(stage, ".ngl-morph-line");
   const drawPaths = qa(stage, ".ngl-draw-path");
@@ -172,12 +177,15 @@ function initBarsToBridge(root, reduceMotion, profile) {
     .to(after, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power2.out" }, 2.05)
     .to(stage, { "--bridge-warmth": 1, duration: 0.8, ease: "power1.out" }, 2.2);
 
-  if (reduceMotion || profile === "lite") {
+  stage.classList.add("is-ready");
+
+  if (reduceMotion) {
     tl.progress(1).pause();
     return null;
   }
-  if (profile === "balanced") {
-    tl.duration(Math.min(tl.duration(), 2.1));
+  if (profile === "balanced" || profile === "lite") {
+    if (profile === "lite") tl.timeScale(1.35);
+    else tl.duration(Math.min(tl.duration(), 2.1));
     return createOnceTrigger(stage, tl, "top 78%");
   }
   return ScrollTrigger.create({
@@ -189,8 +197,7 @@ function initBarsToBridge(root, reduceMotion, profile) {
   });
 }
 
-function initCityRoute(root, reduceMotion, profile) {
-  const stage = q(root, '[data-narrative-stage="cityRoute"]');
+function initCityRoute(stage, reduceMotion, profile) {
   if (!stage) return null;
   const routePath = q(stage, "#nglCityRoutePath");
   const runner = q(stage, ".ngl-route-runner");
@@ -222,13 +229,14 @@ function initCityRoute(root, reduceMotion, profile) {
 
   if (reduceMotion || profile === "lite" || !MotionPathPlugin) {
     tl.progress(1).pause();
+    stage.classList.add("is-ready");
     return null;
   }
+  stage.classList.add("is-ready");
   return createOnceTrigger(stage, tl, "top 72%");
 }
 
-function initFinalLetterUnfold(root, reduceMotion, profile) {
-  const stage = q(root, '[data-narrative-stage="letterUnfold"]');
+function initFinalLetterUnfold(stage, reduceMotion, profile) {
   if (!stage) return null;
   const shell = q(stage, ".ngl-letter-shell");
   const dawn = q(stage, ".ngl-letter-dawn");
@@ -247,6 +255,7 @@ function initFinalLetterUnfold(root, reduceMotion, profile) {
     gsap.set(content, { clipPath: "none" });
     gsap.set(contentChildren, { autoAlpha: 1, y: 0 });
     gsap.set(threadPath, { strokeDashoffset: 0 });
+    stage.classList.add("is-ready");
     return null;
   }
 
@@ -263,8 +272,10 @@ function initFinalLetterUnfold(root, reduceMotion, profile) {
 
     if (reduceMotion) {
       tl.progress(1).pause();
+      stage.classList.add("is-ready");
       return null;
     }
+    stage.classList.add("is-ready");
     return createOnceTrigger(stage, tl, "top 76%");
   }
 
@@ -284,8 +295,10 @@ function initFinalLetterUnfold(root, reduceMotion, profile) {
 
   if (reduceMotion) {
     tl.progress(1).pause();
+    stage.classList.add("is-ready");
     return null;
   }
+  stage.classList.add("is-ready");
   return createOnceTrigger(stage, tl, "top 72%");
 }
 
@@ -305,7 +318,7 @@ export function initNarrativeAnimations(root = document) {
   const initScene = (sceneRoot, init) => {
     if (!sceneRoot || initialized.has(sceneRoot)) return;
     initialized.add(sceneRoot);
-    const trigger = init(sceneRoot.ownerDocument, reduceMotion, profile);
+    const trigger = init(sceneRoot, reduceMotion, profile);
     if (trigger) triggers.push(trigger);
     scheduleScrollRefresh(true);
   };

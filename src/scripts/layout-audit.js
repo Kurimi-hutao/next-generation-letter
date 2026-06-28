@@ -2,7 +2,7 @@ export function auditHorizontalOverflow(root = document.body) {
   if (!import.meta.env.DEV || !root) return [];
 
   const viewportWidth = window.visualViewport?.width || document.documentElement.clientWidth;
-  const ignoredFixed = ".audio-player, .mobile-progress, .chapter-progress";
+  const ignoredFixed = ".audio-player, .story-shell, .chapter-progress";
   const ignoredDecor = ".red-thread, .red-thread *, .chapter-overlays, .chapter-overlay, .ngl-archive-develop__scan";
   const offenders = [...root.querySelectorAll("*")]
     .filter((element) => {

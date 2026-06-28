@@ -6,8 +6,8 @@ export function getPerformanceProfile() {
   const lowCpu = typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
   const lowMemory = typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4;
 
-  if (reduceMotion || saveData || lowCpu || lowMemory) return "lite";
-  if (coarsePointer || smallViewport) return "balanced";
+  if (reduceMotion || saveData) return "lite";
+  if (coarsePointer || smallViewport || lowCpu || lowMemory) return "balanced";
   return "full";
 }
 

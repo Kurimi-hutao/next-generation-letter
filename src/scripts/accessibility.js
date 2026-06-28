@@ -167,32 +167,6 @@ export function setupModal({ button, shell, content, sourceNotes, mediaSlots = [
   });
 }
 
-export function setupMobileNav(button, nav) {
-  if (!button || !nav) return;
-  const controller = createDialogController({
-    shell: nav,
-    panel: nav,
-    openTriggers: [],
-    closeTriggers: [],
-    mode: "popover",
-    lockScroll: false,
-    onBeforeOpen: () => button.setAttribute("aria-expanded", "true"),
-    onAfterClose: () => button.setAttribute("aria-expanded", "false")
-  });
-
-  button.addEventListener("click", () => {
-    if (controller.isOpen()) {
-      controller.close(true);
-    } else {
-      controller.open(button);
-    }
-  });
-
-  nav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) controller.close(true);
-  });
-}
-
 export function setupArchiveDialog({ shell, entries, mediaSlots = [] }) {
   if (!shell) return;
   const panel = shell.querySelector(".archive-panel");

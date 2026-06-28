@@ -11,7 +11,7 @@ import { createRedThread } from "./red-thread.js";
 import { renderMedia } from "./render-media.js";
 import { createOverlays } from "./overlays.js";
 import { refreshScrollScenes, setupChapterProgress, setupScrollScenes, setupNavSpy } from "./scroll-scenes.js";
-import { setupArchiveDialog, setupModal, setupMobileNav } from "./accessibility.js";
+import { setupArchiveDialog, setupModal } from "./accessibility.js";
 import { setupEnvelopeIntro } from "./envelope-intro.js";
 import { setupAudioController } from "./audio-controller.js";
 import { initNarrativeAnimations } from "./narrative-animations.js";
@@ -19,6 +19,7 @@ import { renderNarrativeBlock } from "./narrative-markup.js";
 import { auditHorizontalOverflow } from "./layout-audit.js";
 import { applyPerformanceProfile } from "./performance-profile.js";
 import { setupStoryShell } from "./story-shell.js";
+import { setupChapterLinkNavigation, setupHashNavigation } from "./navigation.js";
 
 applyPerformanceProfile();
 
@@ -159,14 +160,13 @@ story.innerHTML = createRedThread(chapters);
 chapters.forEach((chapter, index) => story.append(renderChapter(chapter, index)));
 
 const nav = document.querySelector(".chapter-nav");
-const mobileNav = document.querySelector(".mobile-nav");
 nav.innerHTML = chapters.map((chapter) => `<a href="#${chapter.id}" data-title="${escapeHtml(chapter.title)}">${chapter.number}</a>`).join("");
-mobileNav.innerHTML = chapters.map((chapter) => `<a href="#${chapter.id}">${chapter.number} ${escapeHtml(chapter.shortTitle)}</a>`).join("");
 
 const storyShell = setupStoryShell(chapters);
-setupMobileNav(document.querySelector(".mobile-progress"), mobileNav);
+setupChapterLinkNavigation(nav);
+setupChapterLinkNavigation(document.querySelector(".story-shell"));
 setupModal({
-  button: [document.querySelector(".source-button--inline"), storyShell.sourceButton],
+  button: document.querySelector(".source-button--inline"),
   shell: document.querySelector(".modal-shell"),
   content: document.querySelector(".source-modal__content"),
   sourceNotes,
@@ -183,6 +183,7 @@ preloadCaptureImages(story);
 
 const audio = setupAudioController(document.querySelector(".audio-player"));
 let storyInitialized = false;
+let cleanupHashNavigation = null;
 function enterStory(event) {
   if (storyInitialized) return;
   storyInitialized = true;
@@ -191,6 +192,7 @@ function enterStory(event) {
   setupNavSpy(chapters);
   setupChapterProgress(chapters, audio, storyShell);
   requestAnimationFrame(() => refreshScrollScenes(true));
+  cleanupHashNavigation = setupHashNavigation();
   if (import.meta.env.DEV) window.auditHorizontalOverflow = () => auditHorizontalOverflow();
   window.setTimeout(() => story.focus({ preventScroll: true }), 0);
 }
